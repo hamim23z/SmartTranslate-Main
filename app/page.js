@@ -1,95 +1,174 @@
-import Image from "next/image";
-import styles from "./globals.css";
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+import {
+  AppBar,
+  Box,
+  Button,
+  Typography,
+  Toolbar,
+  Menu,
+  Container,
+  MenuItem,
+  IconButton,
+  Drawer,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 
-export default function Home() {
+export default function HomePage() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const toggleDrawer = (open) => () => {
+    setDrawerOpen(open);
+  };
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <AppBar
+        position="static"
+        sx={{
+          backgroundColor: "black",
+        }}
+      >
+        <Toolbar
+          sx={{
+            paddingTop: "20px",
+            paddingBottom: "20px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%",
+              px: 2,
+              display: { xs: "flex", md: "none" },
+            }}
+          >
+            {/* Menu icon for mobile */}
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={toggleDrawer(true)}
+            >
+              <MenuIcon sx={{ fontSize: "35px" }} />
+            </IconButton>
+          </Box>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* App Logo */}
+          <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
+            <Link href="/" passHref style={{ textDecoration: "none" }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "none", md: "flex" },
+                  fontFamily: "Kanit, sans-serif",
+                  fontWeight: "900",
+                  color: "white",
+                  textTransform: "uppercase",
+                }}
+              >
+                Smart Translate
+              </Typography>
+            </Link>
+          </Box>
+
+          {/* Links for desktop, hidden on mobile */}
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              gap: 3,
+            }}
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+            <Link
+              href="https://smarttranslate.mintlify.app/introduction"
+              target="_blank"
+              passHref
+              style={{
+                color: "white",
+                textDecoration: "none",
+              }}
+            >
+              <Button
+                color="inherit"
+                sx={{
+                  fontFamily: "Kanit, sans-serif",
+                  fontWeight: "700",
+                  fontSize: "15px",
+                }}
+              >
+                Documentation
+              </Button>
+            </Link>
+
+            <Link
+              href="/about-us"
+              passHref
+              style={{
+                color: "white",
+                textDecoration: "none",
+              }}
+            >
+              <Button
+                color="inherit"
+                sx={{
+                  fontFamily: "Kanit, sans-serif",
+                  fontWeight: "700",
+                  fontSize: "15px",
+                }}
+              >
+                About Us
+              </Button>
+            </Link>
+
+            <Link
+              href="/translate-video"
+              passHref
+              style={{
+                color: "white",
+                textDecoration: "none",
+              }}
+            >
+              <Button
+                color="inherit"
+                sx={{
+                  fontFamily: "Kanit, sans-serif",
+                  fontWeight: "700",
+                  fontSize: "15px",
+                }}
+              >
+                Translate Videos
+              </Button>
+            </Link>
+
+            <Link
+              href="/translate-text"
+              passHref
+              style={{
+                color: "white",
+                textDecoration: "none",
+              }}
+            >
+              <Button
+                color="inherit"
+                sx={{
+                  fontFamily: "Kanit, sans-serif",
+                  fontWeight: "700",
+                  fontSize: "15px",
+                }}
+              >
+                Translate Text
+              </Button>
+            </Link>
+          </Box>
+        </Toolbar>
+      </AppBar>
+    </>
   );
 }
