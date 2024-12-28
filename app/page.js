@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { AppBar, Box, Button, Typography, Toolbar, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText} from "@mui/material";
+import { AppBar, Box, Button, Typography, Toolbar, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Card, CardMedia, CardContent} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
 export default function HomePage() {
@@ -12,7 +12,7 @@ export default function HomePage() {
 
   return (
     <>
-      <AppBar position="static" sx={{ backgroundColor: "black" }}>
+      <AppBar position="static" sx={{ background: "black" }}>
         <Toolbar //this is the entire toolbar, everything is locaed inside here
           sx={{
             paddingTop: "20px",
@@ -182,7 +182,62 @@ export default function HomePage() {
         </Box>
       </Drawer>
 
-      <Typography>Hello</Typography>
+
+      <Box sx = {{
+        display: "flex",
+        flexDirection: "row",
+        gap: 5,
+        paddingTop: "30px",
+        justifyContent: "center"
+      }}>
+        <Card sx = {{maxWidth: "340px"}}>
+          <CardContent>
+            <Typography variant="h6"
+              sx = {{fontFamily: "Kanit", fontWeight: 700, textTransform: "uppercase", textAlign: "center"}}
+            >
+              Tip #1
+            </Typography>
+
+            <Typography>
+              Choose your desired input and output language. 
+              Then enter text in the input box. Click translate
+              and then voila! You just translated text.
+            </Typography>
+          </CardContent>
+        </Card>
+
+        <Card sx = {{maxWidth: "340px"}}>
+          <CardContent>
+            <Typography variant="h6"
+              sx = {{fontFamily: "Kanit", fontWeight: 700, textTransform: "uppercase", textAlign: "center"}}
+            >
+              Tip #2
+            </Typography>
+
+            <Typography>
+              Choose from a variety of different languages to translate to and from. If your language is not listed, 
+              please contact us immediately. 
+            </Typography>
+          </CardContent>
+        </Card>
+
+        <Card sx = {{maxWidth: "340px"}}>
+          <CardContent>
+            <Typography variant="h6"
+              sx = {{fontFamily: "Kanit", fontWeight: 700, textTransform: "uppercase", textAlign: "center"}}
+            >
+              Tip #3
+            </Typography>
+
+            <Typography>
+              You don&apos;t have to just translate text! To translate YouTube videos, click the &apos;Translate Videos&apos; tab above.
+              The process is similar to translating text. 
+            </Typography>
+          </CardContent>
+        </Card>
+
+
+      </Box>
     </>
   );
 }
