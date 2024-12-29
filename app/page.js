@@ -4,6 +4,8 @@ import Link from "next/link";
 import { AppBar, Box, Button, Typography, Toolbar, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Card, CardMedia, CardContent} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
+import Translator from "@/components/Translator";
+
 export default function HomePage() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const toggleDrawer = (open) => () => {
@@ -188,7 +190,9 @@ export default function HomePage() {
         flexDirection: "row",
         gap: 5,
         paddingTop: "30px",
-        justifyContent: "center"
+        paddingBottom: "50px",
+        justifyContent: "center",
+        background: "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)"
       }}>
         <Card sx = {{maxWidth: "340px"}}>
           <CardContent>
@@ -235,9 +239,15 @@ export default function HomePage() {
             </Typography>
           </CardContent>
         </Card>
-
-
       </Box>
+
+      <Box>
+        <Translator></Translator>
+      </Box>
+
+      
+
+      
     </>
   );
 }
