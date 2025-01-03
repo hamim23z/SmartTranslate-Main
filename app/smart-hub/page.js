@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import {Box, Typography, AppBar, Toolbar, IconButton, Button, List, ListItem, ListItemButton, ListItemText, Drawer} from "@mui/material";
+import {Box, Typography, AppBar, Toolbar, IconButton, Button, List, ListItem, ListItemButton, ListItemText, Drawer, Card, CardMedia, CardContent, CardActions} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 
@@ -187,6 +187,83 @@ export default function SmartHub() {
           </List>
         </Box>
       </Drawer>
+
+
+      <Box 
+        sx = {{
+          display: "flex",
+          flexDirection: "row",
+          background: "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+          padding: "30px",
+          gap: 5
+        }}
+      >
+        <Card sx = {{maxWidth: 390}}>
+          <CardMedia>
+
+          </CardMedia>
+
+          <CardContent>
+            <Typography gutterBottom variant="h3" sx = {{fontFamily: "Kanit", fontWeight: 700}}>
+              Smart Study
+            </Typography>
+
+            <Typography variant="body2" sx = {{fontFamily: "Kanit", fontWeight: 700}}>
+              Filler text goes here
+            </Typography>
+          </CardContent>
+
+          <CardActions>
+            <Button></Button>
+
+            <Button></Button>
+          </CardActions>
+        </Card>
+
+        <Card sx = {{maxWidth: 390}}>
+          <CardMedia>
+
+          </CardMedia>
+
+          <CardContent>
+            <Typography gutterBottom variant="h3" sx = {{fontFamily: "Kanit", fontWeight: 700}}>
+              Smart Stories
+            </Typography>
+
+            <Typography variant="body2" sx = {{fontFamily: "Kanit", fontWeight: 700}}>
+              Filler text goes here.
+            </Typography>
+          </CardContent>
+
+          <CardActions>
+            <Button></Button>
+
+            <Button></Button>
+          </CardActions>
+        </Card>
+
+        <Card sx = {{maxWidth: 340}}>
+          <CardMedia>
+
+          </CardMedia>
+
+          <CardContent>
+            <Typography gutterBottom variant="h3" sx = {{fontFamily: "Kanit", fontWeight: 700}}>
+              Smart Hoops
+            </Typography>
+
+            <Typography variant="body2" sx = {{fontFamily: "Kanit", fontWeight: 700}}>
+              Filler text goes here
+            </Typography>
+          </CardContent>
+
+          <CardActions>
+            <Button></Button>
+
+            <Button></Button>
+          </CardActions>
+        </Card>
+      </Box>
     </>
   );
 }

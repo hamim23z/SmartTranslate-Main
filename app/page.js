@@ -187,8 +187,7 @@ export default function HomePage() {
         display: "flex",
         flexDirection: "row",
         gap: 5,
-        paddingTop: "30px",
-        paddingBottom: "50px",
+        padding: "30px",
         justifyContent: "center",
         background: "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)"
       }}>
