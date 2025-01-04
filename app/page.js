@@ -1,8 +1,32 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { AppBar, Box, Button, Typography, Toolbar, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Card, CardMedia, CardContent} from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Button,
+  Typography,
+  Toolbar,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Card,
+  CardContent,
+  Container,
+  Stack,
+  TextField,
+  Snackbar,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+
+{
+  /*Footer Contact Thingy*/
+}
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "@/firebase";
 
 export default function HomePage() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -10,9 +34,71 @@ export default function HomePage() {
     setDrawerOpen(open);
   };
 
+  {
+    /* For the Newsletter Now */
+  }
+  const [snackbarOpenNews, setSnackbarOpenNews] = useState(false);
+  const [emailNews, setEmailNews] = useState("");
+  const [emailErrorNews, setEmailErrorNews] = useState("");
+  const emailRegexNews = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const handleSnackbarCloseNews = () => {
+    setSnackbarOpenNews(false);
+  };
+
+  const handleEmailChangeNews = (e) => {
+    const value = e.target.value;
+    setEmailNews(value);
+
+    if (!emailRegexNews.test(value)) {
+      setEmailErrorNews("Enter a valid email address.");
+    } else {
+      setEmailErrorNews("");
+    }
+  };
+
+  const handleSendMessageNews = async () => {
+    setEmailErrorNews("");
+
+    if (!emailNews.trim()) {
+      setSnackbarOpenNews(true);
+      setEmailErrorNews("Email cannot be empty.");
+      return;
+    }
+
+    if (!emailRegexNews.test(emailNews)) {
+      setSnackbarOpenNews(true);
+      setEmailErrorNews("Enter a valid email address.");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "Newsletter"), {
+        email: emailNews,
+        timestamp: new Date(),
+      });
+
+      setSnackbarOpenNews(true);
+      setEmailErrorNews("");
+
+      setEmailNews("");
+    } catch (error) {
+      console.error("Error sending message: ", error);
+    }
+  };
+  {
+    /*Newsletter Ends Here*/
+  }
+
   return (
     <>
-      <AppBar position="static" sx={{ background: "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)" }}>
+      <AppBar
+        position="static"
+        sx={{
+          background:
+            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+        }}
+      >
         <Toolbar //this is the entire toolbar, everything is locaed inside here
           sx={{
             paddingTop: "20px",
@@ -76,7 +162,7 @@ export default function HomePage() {
               </Typography>
             </Link>
           </Box>
-          
+
           <Box //and this is the code for the links in the toolbar. notice how it's in its own box
             sx={{
               display: { xs: "none", md: "flex" },
@@ -182,66 +268,319 @@ export default function HomePage() {
         </Box>
       </Drawer>
 
-
-      <Box sx = {{
-        display: "flex",
-        flexDirection: "row",
-        gap: 5,
-        padding: "30px",
-        justifyContent: "center",
-        background: "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)"
-      }}>
-        <Card sx = {{maxWidth: "340px"}}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          gap: 5,
+          padding: "30px",
+          justifyContent: "center",
+          background:
+            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+        }}
+      >
+        <Card sx={{ maxWidth: "340px" }}>
           <CardContent>
-            <Typography variant="h6"
-              sx = {{fontFamily: "Kanit", fontWeight: 700, textTransform: "uppercase", textAlign: "center"}}
+            <Typography
+              variant="h6"
+              sx={{
+                fontFamily: "Kanit",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                textAlign: "center",
+              }}
             >
               Tip #1
             </Typography>
 
             <Typography>
-              Choose your desired input and output language. 
-              Then enter text in the input box. Click translate
-              and then voila! You just translated text.
+              Choose your desired input and output language. Then enter text in
+              the input box. Click translate and then voila! You just translated
+              text.
             </Typography>
           </CardContent>
         </Card>
 
-        <Card sx = {{maxWidth: "340px"}}>
+        <Card sx={{ maxWidth: "340px" }}>
           <CardContent>
-            <Typography variant="h6"
-              sx = {{fontFamily: "Kanit", fontWeight: 700, textTransform: "uppercase", textAlign: "center"}}
+            <Typography
+              variant="h6"
+              sx={{
+                fontFamily: "Kanit",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                textAlign: "center",
+              }}
             >
               Tip #2
             </Typography>
 
             <Typography>
-              Choose from a variety of different languages to translate to and from. If your language is not listed, 
-              please contact us immediately. 
+              Choose from a variety of different languages to translate to and
+              from. If your language is not listed, contact us and we&apos;ll
+              add it soon.
             </Typography>
           </CardContent>
         </Card>
 
-        <Card sx = {{maxWidth: "340px"}}>
+        <Card sx={{ maxWidth: "340px" }}>
           <CardContent>
-            <Typography variant="h6"
-              sx = {{fontFamily: "Kanit", fontWeight: 700, textTransform: "uppercase", textAlign: "center"}}
+            <Typography
+              variant="h6"
+              sx={{
+                fontFamily: "Kanit",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                textAlign: "center",
+              }}
             >
               Tip #3
             </Typography>
 
             <Typography>
-              You don&apos;t have to just translate text! To translate YouTube videos, click the &apos;Translate Videos&apos; tab above.
-              The process is similar to translating text. 
+              You don&apos;t have to just translate text! To translate YouTube
+              videos, click the &apos;Translate Videos&apos; tab above. The
+              process is similar to translating text.
             </Typography>
           </CardContent>
         </Card>
       </Box>
 
 
+      {/*Main Content Goes Here*/}
       
 
-      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {/* Footer */}
+      <Box
+        component="footer"
+        sx={{
+          height: "auto",
+          py: 4,
+          pb: 10,
+          background:
+            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+          paddingTop: "100px",
+        }}
+      >
+        <Container maxWidth="lg">
+          <Stack
+            direction={{ xs: "column", md: "row" }}
+            spacing={4}
+            justifyContent="space-between"
+          >
+            <Stack spacing={2}>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "white",
+                  fontFamily: "Kanit",
+                  fontWeight: "900",
+                }}
+              >
+                Smart Translate
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{ color: "white", fontFamily: "Kanit" }}
+              >
+                Subscribe to our newsletter
+              </Typography>
+              <Stack direction="row" spacing={1}>
+                <TextField
+                  variant="outlined"
+                  size="small"
+                  onChange={handleEmailChangeNews}
+                  placeholder="Your email"
+                  value={emailNews}
+                  sx={{
+                    flexGrow: 1,
+                    background: "white",
+                    borderRadius: "10px",
+                    "& .MuiInputBase-input::placeholder": {
+                      color: "black",
+                      fontFamily: "Kanit",
+                      fontWeight: "900",
+                    },
+                    "& .MuiInputBase-input": {
+                      color: "black",
+                      fontFamily: "Kanit",
+                      fontWeight: "900",
+                    },
+                  }}
+                />
+                <Button
+                  variant="contained"
+                  sx={{
+                    borderRadius: "10px",
+                    background: "primary",
+                    transition: "background 0.4s ease-in-out",
+                    "&:hover": {
+                      background: "rgba(145, 83, 209, 1)",
+                    },
+                  }}
+                  onClick={handleSendMessageNews}
+                >
+                  Submit
+                </Button>
+
+                <Snackbar
+                  open={snackbarOpenNews}
+                  autoHideDuration={6000}
+                  onClose={handleSnackbarCloseNews}
+                  message={
+                    emailErrorNews ||
+                    "You have successfully signed up for our newsletter."
+                  }
+                />
+              </Stack>
+            </Stack>
+
+            <Stack direction={{ xs: "column", md: "row" }} spacing={6}>
+              {/* Company Section */}
+              <Stack spacing={1}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "white",
+                    fontFamily: "Kanit",
+                    fontWeight: "900",
+                  }}
+                >
+                  Company
+                </Typography>
+                <Link
+                  href="/aboutus"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    fontFamily: "Kanit",
+                    fontWeight: "400",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  About Us
+                </Link>
+
+                <Link
+                  href="/blog"
+                  target="_blank"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    fontFamily: "Kanit",
+                    fontWeight: "400",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Blog
+                </Link>
+              </Stack>
+
+              {/* References Section */}
+              <Stack spacing={1}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "white",
+                    fontFamily: "Kanit",
+                    fontWeight: "900",
+                  }}
+                >
+                  References
+                </Typography>
+                <Link
+                  href="https://smarttranslate.mintlify.app/introduction"
+                  target="_blank"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    fontFamily: "Kanit",
+                    fontWeight: "400",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Documentation
+                </Link>
+
+                <Link
+                  href="/demos"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    fontFamily: "Kanit",
+                    fontWeight: "400",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Demos
+                </Link>
+              </Stack>
+
+              {/* Legal Section */}
+              <Stack spacing={1}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "white",
+                    fontFamily: "Kanit",
+                    fontWeight: "900",
+                  }}
+                >
+                  Legal
+                </Typography>
+                <Link
+                  href="/privacy"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    fontFamily: "Kanit",
+                    fontWeight: "400",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Privacy
+                </Link>
+                <Link
+                  href="/termsandcond"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    fontFamily: "Kanit",
+                    fontWeight: "400",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Terms and Conditions
+                </Link>
+              </Stack>
+            </Stack>
+          </Stack>
+        </Container>
+      </Box>
     </>
   );
 }
