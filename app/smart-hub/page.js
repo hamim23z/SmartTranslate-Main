@@ -263,9 +263,29 @@ export default function SmartHub() {
           </CardContent>
 
           <CardActions>
-            <Button>Live Site</Button>
+            <Link
+              href="https://smartstudycs.vercel.app/"
+              target="_blank"
+              rel="noopener"
+              style={{
+                textDecoration: "none",
+                color: "black"
+              }}
+            >
+              <Button>
+                Live Site
+              </Button>
+            </Link>
 
-            <Button>Documentation</Button>
+            <Link 
+              href="https://smartstudy-0f4a59fc.mintlify.app/introduction"
+              target="_blank"
+              rel="noopener"
+            >
+              <Button>
+                Documentation
+              </Button>
+            </Link>
           </CardActions>
         </Card>
 
@@ -296,8 +316,28 @@ export default function SmartHub() {
           </CardContent>
 
           <CardActions>
-            <Button>Documentation</Button>
-            <Button>TikTok</Button>
+            <Link
+              href="https://smarttranslate.mintlify.app/introduction"
+              target="_blank" rel="noopener"
+            >
+              <Button>
+                Documentation
+              </Button>
+            </Link>
+            
+            
+            <Link
+              href="https://www.tiktok.com/@smartstories0"
+              target="_blank"
+              rel="noopener"
+            >
+            
+              <Button>
+                TikTok
+              </Button>
+            </Link>
+
+            <Button disabled>Instagram</Button>
           </CardActions>
         </Card>
 
@@ -329,7 +369,7 @@ export default function SmartHub() {
           </CardContent>
 
           <CardActions>
-            <Button>Documentation</Button>
+            <Button disabled>Documentation</Button>
           </CardActions>
         </Card>
       </Box>
