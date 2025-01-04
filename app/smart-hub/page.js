@@ -16,15 +16,77 @@ import {
   CardMedia,
   CardContent,
   CardActions,
+  Container,
+  Stack,
+  TextField,
+  Snackbar,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
+
+{/*Footer Contact Thingy*/}
+import { collection, addDoc} from "firebase/firestore";
+import { db } from "@/firebase";
 
 export default function SmartHub() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
   };
+
+  {
+    /* For the Newsletter Now */
+  }
+  const [snackbarOpenNews, setSnackbarOpenNews] = useState(false);
+  const [emailNews, setEmailNews] = useState("");
+  const [emailErrorNews, setEmailErrorNews] = useState("");
+  const emailRegexNews = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const handleSnackbarCloseNews = () => {
+    setSnackbarOpenNews(false);
+  };
+
+  const handleEmailChangeNews = (e) => {
+    const value = e.target.value;
+    setEmailNews(value);
+
+    if (!emailRegexNews.test(value)) {
+      setEmailErrorNews("Enter a valid email address.");
+    } else {
+      setEmailErrorNews("");
+    }
+  };
+
+  const handleSendMessageNews = async () => {
+    setEmailErrorNews("");
+
+    if (!emailNews.trim()) {
+      setSnackbarOpenNews(true);
+      setEmailErrorNews("Email cannot be empty.");
+      return;
+    }
+
+    if (!emailRegexNews.test(emailNews)) {
+      setSnackbarOpenNews(true);
+      setEmailErrorNews("Enter a valid email address.");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "Newsletter"), {
+        email: emailNews,
+        timestamp: new Date(),
+      });
+
+      setSnackbarOpenNews(true);
+      setEmailErrorNews("");
+
+      setEmailNews("");
+    } catch (error) {
+      console.error("Error sending message: ", error);
+    }
+  };
+  {/*Newsletter Ends Here*/}
 
   return (
     <>
@@ -66,7 +128,7 @@ export default function SmartHub() {
               sx={{
                 flexGrow: 1,
                 textAlign: "center",
-                fontFamily: "Kanit, sans-serif",
+                fontFamily: "Kanit",
                 fontWeight: "900",
                 color: "white",
                 textTransform: "uppercase",
@@ -88,7 +150,7 @@ export default function SmartHub() {
                 variant="h6"
                 sx={{
                   flexGrow: 1,
-                  fontFamily: "Kanit, sans-serif",
+                  fontFamily: "Kanit",
                   fontWeight: "900",
                   color: "white",
                   textTransform: "uppercase",
@@ -117,7 +179,7 @@ export default function SmartHub() {
               <Button
                 color="inherit"
                 sx={{
-                  fontFamily: "Kanit, sans-serif",
+                  fontFamily: "Kanit",
                   fontWeight: "700",
                   fontSize: "15px",
                 }}
@@ -136,7 +198,7 @@ export default function SmartHub() {
               <Button
                 color="inherit"
                 sx={{
-                  fontFamily: "Kanit, sans-serif",
+                  fontFamily: "Kanit",
                   fontWeight: "700",
                   fontSize: "15px",
                 }}
@@ -203,7 +265,6 @@ export default function SmartHub() {
           </List>
         </Box>
       </Drawer>
-
 
       <Box>
         <Typography
@@ -372,6 +433,220 @@ export default function SmartHub() {
             <Button disabled>Documentation</Button>
           </CardActions>
         </Card>
+      </Box>
+
+      {/* Footer */}
+      <Box
+        component="footer"
+        sx={{
+          height: "auto",
+          py: 4,
+          pb: 10,
+          background:
+            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+          paddingTop: "100px"
+        }}
+      >
+        <Container maxWidth="lg">
+          <Stack
+            direction={{ xs: "column", md: "row" }}
+            spacing={4}
+            justifyContent="space-between"
+          >
+            <Stack spacing={2}>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "white",
+                  fontFamily: "Kanit",
+                  fontWeight: "900",
+                }}
+              >
+                Smart Translate
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{ color: "white", fontFamily: "Kanit" }}
+              >
+                Subscribe to our newsletter
+              </Typography>
+              <Stack direction="row" spacing={1}>
+                <TextField
+                  variant="outlined"
+                  size="small"
+                  onChange={handleEmailChangeNews}
+                  placeholder="Your email"
+                  value={emailNews}
+                  sx={{
+                    flexGrow: 1,
+                    background: "white",
+                    borderRadius: "10px",
+                    "& .MuiInputBase-input::placeholder": {
+                      color: "black",
+                      fontFamily: "Kanit",
+                      fontWeight: "900",
+                    },
+                    "& .MuiInputBase-input": {
+                      color: "black",
+                      fontFamily: "Kanit",
+                      fontWeight: "900",
+                    },
+                  }}
+                />
+                <Button
+                  variant="contained"
+                  sx={{
+                    borderRadius: "10px",
+                    background: "primary",
+                    transition: "background 0.4s ease-in-out",
+                    "&:hover": {
+                      background: "rgba(145, 83, 209, 1)",
+                    },
+                  }}
+                  onClick={handleSendMessageNews}
+                >
+                  Submit
+                </Button>
+
+                <Snackbar
+                  open={snackbarOpenNews}
+                  autoHideDuration={6000}
+                  onClose={handleSnackbarCloseNews}
+                  message={
+                    emailErrorNews ||
+                    "You have successfully signed up for our newsletter."
+                  }
+                />
+              </Stack>
+            </Stack>
+
+            <Stack direction={{ xs: "column", md: "row" }} spacing={6}>
+              {/* Company Section */}
+              <Stack spacing={1}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "white",
+                    fontFamily: "Kanit",
+                    fontWeight: "900",
+                  }}
+                >
+                  Company
+                </Typography>
+                <Link
+                  href="/aboutus"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    fontFamily: "Kanit",
+                    fontWeight: "400",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  About Us
+                </Link>
+
+                <Link
+                  href="/blog"
+                  target="_blank"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    fontFamily: "Kanit",
+                    fontWeight: "400",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Blog
+                </Link>
+              </Stack>
+
+              {/* References Section */}
+              <Stack spacing={1}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "white",
+                    fontFamily: "Kanit",
+                    fontWeight: "900",
+                  }}
+                >
+                  References
+                </Typography>
+                <Link
+                  href="https://smarttranslate.mintlify.app/introduction"
+                  target="_blank"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    fontFamily: "Kanit",
+                    fontWeight: "400",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Documentation
+                </Link>
+
+                <Link
+                  href="/demos"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    fontFamily: "Kanit",
+                    fontWeight: "400",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Demos
+                </Link>
+              </Stack>
+
+              {/* Legal Section */}
+              <Stack spacing={1}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "white",
+                    fontFamily: "Kanit",
+                    fontWeight: "900",
+                  }}
+                >
+                  Legal
+                </Typography>
+                <Link
+                  href="/privacy"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    fontFamily: "Kanit",
+                    fontWeight: "400",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Privacy
+                </Link>
+                <Link
+                  href="/termsandcond"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    fontFamily: "Kanit",
+                    fontWeight: "400",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Terms and Conditions
+                </Link>
+              </Stack>
+            </Stack>
+          </Stack>
+        </Container>
       </Box>
     </>
   );
