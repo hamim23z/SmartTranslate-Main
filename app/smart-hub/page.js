@@ -1,6 +1,22 @@
 "use client";
 import { useState } from "react";
-import {Box, Typography, AppBar, Toolbar, IconButton, Button, List, ListItem, ListItemButton, ListItemText, Drawer, Card, CardMedia, CardContent, CardActions} from "@mui/material";
+import {
+  Box,
+  Typography,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Button,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Drawer,
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 
@@ -189,78 +205,131 @@ export default function SmartHub() {
       </Drawer>
 
 
-      <Box 
-        sx = {{
+      <Box>
+        <Typography variant="h2"
+          sx = {{
+            fontFamily: "Kanit",
+            fontWeight: 700,
+            textTransform: "uppercase",
+            textAlign: "center",
+            background:
+            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+            color: "white",
+            paddingTop: "30px",
+            paddingBottom: "50px"
+          }}
+        >
+          The Smart Hub
+        </Typography>
+      </Box>
+
+      {/*The cards labeling each project*/}
+      <Box
+        sx={{
           display: "flex",
           flexDirection: "row",
-          background: "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+          background:
+            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
           padding: "30px",
-          gap: 5
+          gap: 5,
+          alignItems: "center",
+          justifyContent: "center"
         }}
       >
-        <Card sx = {{maxWidth: 390}}>
-          <CardMedia>
-
-          </CardMedia>
+       <Card sx={{ maxWidth: 390 }}>
+        <CardMedia
+            sx={{ height: 140 }}
+            image="/mapofcs.png"
+            title="Map of CS"
+          ></CardMedia>
 
           <CardContent>
-            <Typography gutterBottom variant="h3" sx = {{fontFamily: "Kanit", fontWeight: 700}}>
+            <Typography
+              gutterBottom
+              variant="h4"
+              sx={{ fontFamily: "Kanit", fontWeight: 700 }}
+            >
               Smart Study
             </Typography>
 
-            <Typography variant="body2" sx = {{fontFamily: "Kanit", fontWeight: 700}}>
-              Filler text goes here
+            <Typography
+              variant="body2"
+              sx={{ fontFamily: "Kanit", fontWeight: 700 }}
+            >
+              Smart Study is made to make life a little bit easier for engineering students. This project was created as a free 
+              alternative to Chegg and Quizlet. Users will have access to flashcards, videos, quizzes, worksheets, and plenty of
+              other features. A full list of features and upcoming features can be found in the documenation. 
             </Typography>
           </CardContent>
 
           <CardActions>
-            <Button></Button>
+            <Button>Live Site</Button>
 
-            <Button></Button>
+            <Button>Documentation</Button>
           </CardActions>
         </Card>
 
-        <Card sx = {{maxWidth: 390}}>
-          <CardMedia>
-
-          </CardMedia>
+        <Card sx={{ maxWidth: 390 }}>
+        <CardMedia
+            sx={{ height: 140 }}
+            image="/mapofcs.png"
+            title="Map of CS"
+          ></CardMedia>
 
           <CardContent>
-            <Typography gutterBottom variant="h3" sx = {{fontFamily: "Kanit", fontWeight: 700}}>
+            <Typography
+              gutterBottom
+              variant="h4"
+              sx={{ fontFamily: "Kanit", fontWeight: 700 }}
+            >
               Smart Stories
             </Typography>
 
-            <Typography variant="body2" sx = {{fontFamily: "Kanit", fontWeight: 700}}>
-              Filler text goes here.
+            <Typography
+              variant="body2"
+              sx={{ fontFamily: "Kanit", fontWeight: 700 }}
+            >
+              Smart Stories is a project made to create stories, fiction and non-fiction. These stories are then posted on social media,
+              primarily TikTok and Instagram. The website for this project is still in development, no timetable yet, but some stories have already been posted
+              on social media, which can be seen by using the links below. 
             </Typography>
           </CardContent>
 
           <CardActions>
-            <Button></Button>
-
-            <Button></Button>
+            <Button>Documentation</Button>
+            <Button>TikTok</Button>
           </CardActions>
         </Card>
 
-        <Card sx = {{maxWidth: 340}}>
-          <CardMedia>
-
-          </CardMedia>
+        <Card sx={{ maxWidth: 390 }}>
+          <CardMedia
+            sx={{ height: 140 }}
+            image="/mapofcs.png"
+            title="Map of CS"
+          ></CardMedia>
 
           <CardContent>
-            <Typography gutterBottom variant="h3" sx = {{fontFamily: "Kanit", fontWeight: 700}}>
+            <Typography
+              gutterBottom
+              variant="h4"
+              sx={{ fontFamily: "Kanit", fontWeight: 700 }}
+            >
               Smart Hoops
             </Typography>
 
-            <Typography variant="body2" sx = {{fontFamily: "Kanit", fontWeight: 700}}>
-              Filler text goes here
+            <Typography
+              variant="body2"
+              sx={{ fontFamily: "Kanit", fontWeight: 700 }}
+            >
+              Smart Hoops is a project that is very far away in terms of development and production. However, the purpose
+              of this project is to serve as a site where users will be able to view NBA scores in real time, real time
+              NBA news as well, and have access to real time NBA game updates. Users will also be able to participate in
+              Fantasy as well. 
             </Typography>
           </CardContent>
 
           <CardActions>
-            <Button></Button>
-
-            <Button></Button>
+            <Button>Documentation</Button>
           </CardActions>
         </Card>
       </Box>
