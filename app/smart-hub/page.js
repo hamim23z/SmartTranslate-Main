@@ -206,17 +206,18 @@ export default function SmartHub() {
 
 
       <Box>
-        <Typography variant="h2"
-          sx = {{
+        <Typography
+          variant="h2"
+          sx={{
             fontFamily: "Kanit",
             fontWeight: 700,
             textTransform: "uppercase",
             textAlign: "center",
             background:
-            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+              "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
             color: "white",
             paddingTop: "30px",
-            paddingBottom: "50px"
+            paddingBottom: "50px",
           }}
         >
           The Smart Hub
@@ -227,17 +228,17 @@ export default function SmartHub() {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: { xs: "column", sm: "row" },
           background:
             "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
           padding: "30px",
           gap: 5,
           alignItems: "center",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
-       <Card sx={{ maxWidth: 390 }}>
-        <CardMedia
+        <Card sx={{ maxWidth: { xs: "100%", sm: 390 } }}>
+          <CardMedia
             sx={{ height: 140 }}
             image="/mapofcs.png"
             title="Map of CS"
@@ -256,9 +257,12 @@ export default function SmartHub() {
               variant="body2"
               sx={{ fontFamily: "Kanit", fontWeight: 700 }}
             >
-              Smart Study is made to make life a little bit easier for engineering students. This project was created as a free 
-              alternative to Chegg and Quizlet. Users will have access to flashcards, videos, quizzes, worksheets, and plenty of
-              other features. A full list of features and upcoming features can be found in the documenation. 
+              Smart Study is made to make life a little bit easier for
+              engineering students. This project was created as a free
+              alternative to Chegg and Quizlet. Users will have access to
+              flashcards, videos, quizzes, worksheets, and plenty of other
+              features. A full list of features and upcoming features can be
+              found in the documenation.
             </Typography>
           </CardContent>
 
@@ -269,28 +273,24 @@ export default function SmartHub() {
               rel="noopener"
               style={{
                 textDecoration: "none",
-                color: "black"
+                color: "black",
               }}
             >
-              <Button>
-                Live Site
-              </Button>
+              <Button>Live Site</Button>
             </Link>
 
-            <Link 
+            <Link
               href="https://smartstudy-0f4a59fc.mintlify.app/introduction"
               target="_blank"
               rel="noopener"
             >
-              <Button>
-                Documentation
-              </Button>
+              <Button>Documentation</Button>
             </Link>
           </CardActions>
         </Card>
 
-        <Card sx={{ maxWidth: 390 }}>
-        <CardMedia
+        <Card sx={{ maxWidth: { xs: "100%", sm: 390 } }}>
+          <CardMedia
             sx={{ height: 140 }}
             image="/mapofcs.png"
             title="Map of CS"
@@ -309,39 +309,37 @@ export default function SmartHub() {
               variant="body2"
               sx={{ fontFamily: "Kanit", fontWeight: 700 }}
             >
-              Smart Stories is a project made to create stories, fiction and non-fiction. These stories are then posted on social media,
-              primarily TikTok and Instagram. The website for this project is still in development, no timetable yet, but some stories have already been posted
-              on social media, which can be seen by using the links below. 
+              Smart Stories is a project made to create stories, fiction and
+              non-fiction. These stories are then posted on social media,
+              primarily TikTok and Instagram. The website for this project is
+              still in development, no timetable yet, but some stories have
+              already been posted on social media, which can be seen by using
+              the links below.
             </Typography>
           </CardContent>
 
           <CardActions>
             <Link
               href="https://smarttranslate.mintlify.app/introduction"
-              target="_blank" rel="noopener"
+              target="_blank"
+              rel="noopener"
             >
-              <Button>
-                Documentation
-              </Button>
+              <Button>Documentation</Button>
             </Link>
-            
-            
+
             <Link
               href="https://www.tiktok.com/@smartstories0"
               target="_blank"
               rel="noopener"
             >
-            
-              <Button>
-                TikTok
-              </Button>
+              <Button>TikTok</Button>
             </Link>
 
             <Button disabled>Instagram</Button>
           </CardActions>
         </Card>
 
-        <Card sx={{ maxWidth: 390 }}>
+        <Card sx={{ maxWidth: { xs: "100%", sm: 390 } }}>
           <CardMedia
             sx={{ height: 140 }}
             image="/mapofcs.png"
@@ -361,10 +359,12 @@ export default function SmartHub() {
               variant="body2"
               sx={{ fontFamily: "Kanit", fontWeight: 700 }}
             >
-              Smart Hoops is a project that is very far away in terms of development and production. However, the purpose
-              of this project is to serve as a site where users will be able to view NBA scores in real time, real time
-              NBA news as well, and have access to real time NBA game updates. Users will also be able to participate in
-              Fantasy as well. 
+              Smart Hoops is a project that is very far away in terms of
+              development and production. However, the purpose of this project
+              is to serve as a site where users will be able to view NBA scores
+              in real time, real time NBA news as well, and have access to real
+              time NBA game updates. Users will also be able to participate in
+              Fantasy as well.
             </Typography>
           </CardContent>
 
