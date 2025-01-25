@@ -1,7 +1,24 @@
-SmartTranslate is a website used to translate YouTube videos and text to any language! Simply enter your YouTube video link and then the video will be translated to whatever language you chose. For text, it's just like Google Translate, enter a word, phrase, sentence, or paragraph and it'll be translated. 
+# Smart Translate - Part of the Smart Hub
 
-- Languages Used: Javascript
-- Libraries Used: React, MUI, Axios, Google Translate API, and maybe OpenAI Whisper
-- Frameworks Used: Next.js and Node.js
 
-Yes, there will be other libraries used. They can be found in the package.json file. These can be some YouTube libraries or anything else that I may add in the future. 
+### Project Recap
+
+Smart Translate is a website used to translate YouTube videos and text to any language! Simply enter your YouTube video link and then the video will be 
+translated to whatever language you choose. For text, it's just like Google Translate, enter a word, phrase, sentence, or paragraph and it'll be translated
+to your desired language. 
+
+<br>
+
+```
+**Tools, Languages, and Libraries Used**
+
+- Visual Studio Code
+= Git
+- Node.js and Next.js
+- Javascript
+- React
+- MUI
+- Axios
+- Google Translate API
+- OpenAI Whisper
+```
