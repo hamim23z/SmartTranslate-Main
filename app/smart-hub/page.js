@@ -20,13 +20,7 @@ import Link from "next/link";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "@/firebase";
 
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import XIcon from "@mui/icons-material/X";
-
 export default function SmartHub() {
-
   const [snackbarOpenNews, setSnackbarOpenNews] = useState(false);
   const [emailNews, setEmailNews] = useState("");
   const [emailErrorNews, setEmailErrorNews] = useState("");
