@@ -214,6 +214,27 @@ export default function SmartHub() {
         }}
       >
         <List>
+        <ListItem button={true} onClick={() => toggleNavDrawer(false)}>
+            <Link
+              href="/"
+              style={{
+                textDecoration: "none",
+                color: "white",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "Kanit",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  paddingTop: "10px"
+                }}
+              >
+                Home
+              </Typography>
+            </Link>
+          </ListItem>
+
           <ListItem button={true} onClick={() => toggleNavDrawer(false)}>
             <Link
               href="https://smarttranslate.mintlify.app/introduction"
@@ -228,7 +249,6 @@ export default function SmartHub() {
                   fontFamily: "Kanit",
                   fontWeight: 700,
                   textTransform: "uppercase",
-                  paddingTop: "10px",
                 }}
               >
                 Documentation

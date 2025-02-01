@@ -212,6 +212,27 @@ export default function TranslateVideo() {
         <List>
           <ListItem button={true} onClick={() => toggleNavDrawer(false)}>
             <Link
+              href="/"
+              style={{
+                textDecoration: "none",
+                color: "white",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "Kanit",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  paddingTop: "10px"
+                }}
+              >
+                Home
+              </Typography>
+            </Link>
+          </ListItem>
+
+          <ListItem button={true} onClick={() => toggleNavDrawer(false)}>
+            <Link
               href="https://smarttranslate.mintlify.app/introduction"
               target="_blank"
               style={{
@@ -224,7 +245,6 @@ export default function TranslateVideo() {
                   fontFamily: "Kanit",
                   fontWeight: 700,
                   textTransform: "uppercase",
-                  paddingTop: "10px",
                 }}
               >
                 Documentation
@@ -280,7 +300,7 @@ export default function TranslateVideo() {
           background:
             "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
           paddingTop: "40px",
-          paddingBottom: "450px"
+          paddingBottom: "450px",
         }}
       >
         <Typography
@@ -291,14 +311,11 @@ export default function TranslateVideo() {
             fontFamily: "Kanit",
             fontWeight: 900,
             fontSize: { xs: "2rem", sm: "2.5rem" },
-            
           }}
         >
           PAGE COMING SOON!
         </Typography>
       </Box>
-
-      
 
       <Box
         component="footer"
