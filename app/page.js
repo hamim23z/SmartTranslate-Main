@@ -1,10 +1,23 @@
-"use client"
+"use client";
 import { useState } from "react";
-import { AppBar, Box, TextField, Toolbar, Typography, Button, Menu, MenuItem, Container, Stack, Snackbar } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  TextField,
+  Toolbar,
+  Typography,
+  Button,
+  MenuItem,
+  Container,
+  Stack,
+  Snackbar,
+  IconButton, Drawer, List, ListItemText, ListItem
+} from "@mui/material";
 import Link from "next/link";
 import React from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "@/firebase";
+import MenuIcon from '@mui/icons-material/Menu';
 
 export default function HomePage() {
   const [inputText, setInputText] = useState("");
@@ -34,7 +47,7 @@ export default function HomePage() {
   ];
 
   const handleTranslate = async () => {
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_TRANSLATE_API_KEY
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_TRANSLATE_API_KEY;
     const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
 
     const response = await fetch(url, {
@@ -118,6 +131,10 @@ export default function HomePage() {
     setDrawerOpen(open);
   };
 
+  const [openNavDrawer, setOpenNavDrawer] = useState(false);
+  const toggleNavDrawer = (open) => {
+    setOpenNavDrawer(open);
+  }
 
   return (
     <>
@@ -137,6 +154,17 @@ export default function HomePage() {
             alignItems: "center",
           }}
         >
+          {/* Hamburger menu icon for mobile (left side) */}
+          <Box sx={{ display: { xs: "block", sm: "none" } }}>
+            <IconButton
+              color="inherit"
+              edge="start"
+              onClick={() => toggleNavDrawer(true)}
+            >
+              <MenuIcon sx={{ fontSize: "30px", marginTop: "15px" }} />
+            </IconButton>
+          </Box>
+
           <Box>
             <Link
               href="#"
@@ -151,6 +179,7 @@ export default function HomePage() {
                   textTransform: "uppercase",
                   fontWeight: 900,
                   fontSize: "1.25rem",
+                  display: { xs: "none", sm: "block" },
                 }}
               >
                 Smart Translate
@@ -158,7 +187,13 @@ export default function HomePage() {
             </Link>
           </Box>
 
-          <Box sx={{ display: "flex", gap: "2rem" }}>
+          {/* Desktop links */}
+          <Box
+            sx={{
+              display: { xs: "none", sm: "flex" },
+              gap: "2rem",
+            }}
+          >
             <Link
               href="https://smarttranslate.mintlify.app/introduction"
               target="_blank"
@@ -208,7 +243,6 @@ export default function HomePage() {
                   fontFamily: "Kanit",
                   textTransform: "uppercase",
                   fontWeight: 700,
-                  textTransform: "uppercase",
                 }}
               >
                 Smart Hub
@@ -218,11 +252,89 @@ export default function HomePage() {
         </Toolbar>
       </AppBar>
 
+      {/* Drawer for mobile */}
+      <Drawer
+        anchor="left"
+        open={openNavDrawer}
+        onClose={() => toggleNavDrawer(false)}
+        sx={{
+          "& .MuiDrawer-paper": {
+            backgroundColor: "black",
+            color: "white",
+          },
+        }}
+      >
+        <List>
+          <ListItem button={true} onClick={() => toggleNavDrawer(false)}>
+            <Link
+              href="https://smarttranslate.mintlify.app/introduction"
+              target="_blank"
+              style={{
+                textDecoration: "none",
+                color: "white",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "Kanit",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  paddingTop: "10px",
+                }}
+              >
+                Documentation
+              </Typography>
+            </Link>
+          </ListItem>
+
+          <ListItem button={true} onClick={() => toggleNavDrawer(false)}>
+            <Link
+              href="/translate-video"
+              style={{
+                textDecoration: "none",
+                color: "white",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "Kanit",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                }}
+              >
+                Translate Video
+              </Typography>
+            </Link>
+          </ListItem>
+
+          <ListItem button={true} onClick={() => toggleNavDrawer(false)}>
+            <Link
+              href="/smart-hub"
+              style={{
+                textDecoration: "none",
+                color: "white",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "Kanit",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                }}
+              >
+                Smart Hub
+              </Typography>
+            </Link>
+          </ListItem>
+        </List>
+      </Drawer>
+
       {/*Main Section for Translating Text Goes Here*/}
       <Box
         sx={{
           background:
             "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+          padding: { xs: "30px 10px", sm: "40px 20px", md: "50px 30px" },
         }}
       >
         <Typography
@@ -233,8 +345,7 @@ export default function HomePage() {
             color: "white",
             textTransform: "uppercase",
             fontWeight: 900,
-            paddingTop: "50px",
-            paddingBottom: "50px"
+            fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
           }}
         >
           Translate Text Into Your Desired Language
@@ -246,7 +357,7 @@ export default function HomePage() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          flexDirection: "row",
+          flexDirection: { xs: "column", md: "row" },
           gap: 2,
           background:
             "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
@@ -265,7 +376,7 @@ export default function HomePage() {
             background: "white",
             borderRadius: "10px",
             fontFamily: "Kanit",
-            width: "300px",
+            width: { xs: "100%", sm: "300px" },
           }}
         >
           {commonLanguages.map((lang) => (
@@ -287,7 +398,7 @@ export default function HomePage() {
             background: "white",
             borderRadius: "10px",
             fontFamily: "Kanit",
-            width: "300px",
+            width: { xs: "100%", sm: "300px" },
           }}
         >
           {allLanguages.map((lang) => (
@@ -306,6 +417,7 @@ export default function HomePage() {
             fontFamily: "Kanit",
             textTransform: "uppercase",
             fontWeight: "bold",
+            width: { xs: "100%", sm: "auto" },
           }}
           onClick={handleTranslate}
         >
@@ -317,6 +429,7 @@ export default function HomePage() {
         sx={{
           background:
             "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+          padding: { xs: "10px", sm: "20px" },
         }}
       >
         {/* Display Selected Language */}
@@ -328,6 +441,7 @@ export default function HomePage() {
             textTransform: "uppercase",
             fontWeight: "bold",
             textAlign: "center",
+            fontSize: { xs: "0.9rem", sm: "1rem" },
           }}
         >
           {selectedLanguage
@@ -343,12 +457,16 @@ export default function HomePage() {
       <Box
         component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "25ch" },
           background:
             "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
           textAlign: "center",
           paddingBottom: "100px",
           paddingTop: "50px",
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 2,
         }}
         noValidate
         autoComplete="off"
@@ -366,8 +484,8 @@ export default function HomePage() {
             "& .MuiInputBase-input": {
               minHeight: "250px",
             },
+            width: { xs: "90%", sm: "500px" },
           }}
-          style={{ width: "500px" }}
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
         />
@@ -385,8 +503,8 @@ export default function HomePage() {
             "& .MuiInputBase-input": {
               minHeight: "250px",
             },
+            width: { xs: "90%", sm: "500px" },
           }}
-          style={{ width: "500px" }}
           value={outputText}
           InputProps={{ readOnly: true }}
         />

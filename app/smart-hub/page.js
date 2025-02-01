@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import {
   AppBar,
@@ -14,11 +14,15 @@ import {
   Stack,
   TextField,
   Snackbar,
-  IconButton
+  IconButton,
+  Drawer,
+  List,
+  ListItem
 } from "@mui/material";
 import Link from "next/link";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "@/firebase";
+import MenuIcon from '@mui/icons-material/Menu';
 
 export default function SmartHub() {
   const [snackbarOpenNews, setSnackbarOpenNews] = useState(false);
@@ -76,6 +80,10 @@ export default function SmartHub() {
     setDrawerOpen(open);
   };
 
+    const [openNavDrawer, setOpenNavDrawer] = useState(false);
+    const toggleNavDrawer = (open) => {
+      setOpenNavDrawer(open);
+    }
 
   return (
     <>
@@ -95,9 +103,20 @@ export default function SmartHub() {
             alignItems: "center",
           }}
         >
+          {/* Hamburger menu icon for mobile (left side) */}
+          <Box sx={{ display: { xs: "block", sm: "none" } }}>
+            <IconButton
+              color="inherit"
+              edge="start"
+              onClick={() => toggleNavDrawer(true)}
+            >
+              <MenuIcon sx={{ fontSize: "30px", marginTop: "15px" }} />
+            </IconButton>
+          </Box>
+
           <Box>
             <Link
-              href="/"
+              href="#"
               style={{
                 textDecoration: "none",
                 color: "white",
@@ -109,6 +128,7 @@ export default function SmartHub() {
                   textTransform: "uppercase",
                   fontWeight: 900,
                   fontSize: "1.25rem",
+                  display: { xs: "none", sm: "block" },
                 }}
               >
                 Smart Translate
@@ -116,7 +136,13 @@ export default function SmartHub() {
             </Link>
           </Box>
 
-          <Box sx={{ display: "flex", gap: "2rem" }}>
+          {/* Desktop links */}
+          <Box
+            sx={{
+              display: { xs: "none", sm: "flex" },
+              gap: "2rem",
+            }}
+          >
             <Link
               href="https://smarttranslate.mintlify.app/introduction"
               target="_blank"
@@ -155,7 +181,7 @@ export default function SmartHub() {
             </Link>
 
             <Link
-              href="#"
+              href="/smart-hub"
               style={{
                 textDecoration: "none",
                 color: "white",
@@ -166,7 +192,6 @@ export default function SmartHub() {
                   fontFamily: "Kanit",
                   textTransform: "uppercase",
                   fontWeight: 700,
-                  textTransform: "uppercase",
                 }}
               >
                 Smart Hub
@@ -176,37 +201,116 @@ export default function SmartHub() {
         </Toolbar>
       </AppBar>
 
+      {/* Drawer for mobile */}
+      <Drawer
+        anchor="left"
+        open={openNavDrawer}
+        onClose={() => toggleNavDrawer(false)}
+        sx={{
+          "& .MuiDrawer-paper": {
+            backgroundColor: "black",
+            color: "white",
+          },
+        }}
+      >
+        <List>
+          <ListItem button={true} onClick={() => toggleNavDrawer(false)}>
+            <Link
+              href="https://smarttranslate.mintlify.app/introduction"
+              target="_blank"
+              style={{
+                textDecoration: "none",
+                color: "white",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "Kanit",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  paddingTop: "10px",
+                }}
+              >
+                Documentation
+              </Typography>
+            </Link>
+          </ListItem>
+
+          <ListItem button={true} onClick={() => toggleNavDrawer(false)}>
+            <Link
+              href="/translate-video"
+              style={{
+                textDecoration: "none",
+                color: "white",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "Kanit",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                }}
+              >
+                Translate Video
+              </Typography>
+            </Link>
+          </ListItem>
+
+          <ListItem button={true} onClick={() => toggleNavDrawer(false)}>
+            <Link
+              href="/smart-hub"
+              style={{
+                textDecoration: "none",
+                color: "white",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "Kanit",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                }}
+              >
+                Smart Hub
+              </Typography>
+            </Link>
+          </ListItem>
+        </List>
+      </Drawer>
+
       {/*Main Section for Cards Goes Here*/}
       <Box
-        sx = {{
-          background: "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)"
+        sx={{
+          background:
+            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+          paddingTop: "40px",
         }}
       >
         <Typography
-          sx = {{
+          sx={{
             color: "white",
             textAlign: "center",
             textTransform: "uppercase",
             fontFamily: "Kanit",
             fontWeight: 900,
-            fontSize: "2.5rem"
+            fontSize: { xs: "2rem", sm: "2.5rem" },
           }}
         >
           The Smart Hub
         </Typography>
       </Box>
 
-
       <Box
         sx={{
           background:
             "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
           display: "flex",
-          flexDirection: "row",
-          paddingBottom: "40px",
+          flexDirection: { xs: "column", sm: "row" },
           justifyContent: "center",
           gap: 5,
           paddingTop: "30px",
+          paddingBottom: "40px",
+          paddingX: { xs: "15px", sm: "0" },
         }}
       >
         <Card sx={{ maxWidth: { xs: "100%", sm: 390 } }}>
@@ -215,7 +319,7 @@ export default function SmartHub() {
             image="/mapofcs.png"
             height="140px"
             alt="Map of CS"
-          ></CardMedia>
+          />
           <CardContent>
             <Typography
               sx={{
@@ -229,17 +333,13 @@ export default function SmartHub() {
             >
               Smart Study
             </Typography>
-            <Typography
-              sx={{
-                fontFamily: "Kanit", fontWeight: 500
-              }}
-            >
+            <Typography sx={{ fontFamily: "Kanit", fontWeight: 500 }}>
               Smart Study is made to make life a little bit easier for
               engineering students. This project was created as a free
               alternative to Chegg and Quizlet. Users will have access to
               flashcards, videos, quizzes, worksheets, and plenty of other
               features. A full list of features and upcoming features can be
-              found in the documenation below.
+              found in the documentation below.
             </Typography>
           </CardContent>
           <CardActions sx={{ justifyContent: "center" }}>
@@ -266,7 +366,7 @@ export default function SmartHub() {
             image="/mapofcs.png"
             height="140px"
             alt="Map of CS"
-          ></CardMedia>
+          />
           <CardContent>
             <Typography
               sx={{
@@ -310,7 +410,7 @@ export default function SmartHub() {
             image="/mapofcs.png"
             height="140px"
             alt="Map of CS"
-          ></CardMedia>
+          />
           <CardContent>
             <Typography
               sx={{
