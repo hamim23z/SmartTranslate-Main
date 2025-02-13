@@ -141,7 +141,7 @@ export default function HomePage() {
       <AppBar
         sx={{
           background:
-            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+            "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(218,19,26,1) 100%)",
           paddingTop: "5px",
           paddingBottom: "5px",
           position: "static",
@@ -353,7 +353,7 @@ export default function HomePage() {
       <Box
         sx={{
           background:
-            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+            "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(218,19,26,1) 100%)",
           padding: { xs: "30px 10px", sm: "40px 20px", md: "50px 30px" },
         }}
       >
@@ -380,7 +380,7 @@ export default function HomePage() {
           flexDirection: { xs: "column", md: "row" },
           gap: 2,
           background:
-            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+            "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(218,19,26,1) 100%)",
           padding: "20px",
         }}
       >
@@ -432,7 +432,7 @@ export default function HomePage() {
         <Button
           variant="contained"
           sx={{
-            background: "rgb(16, 148, 75)",
+            background: "rgb(62, 116, 216)",
             color: "white",
             fontFamily: "Kanit",
             textTransform: "uppercase",
@@ -448,7 +448,7 @@ export default function HomePage() {
       <Box
         sx={{
           background:
-            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+            "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(218,19,26,1) 100%)",
           padding: { xs: "10px", sm: "20px" },
         }}
       >
@@ -478,7 +478,7 @@ export default function HomePage() {
         component="form"
         sx={{
           background:
-            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+            "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(218,19,26,1) 100%)",
           textAlign: "center",
           paddingBottom: "100px",
           paddingTop: "50px",
@@ -536,7 +536,7 @@ export default function HomePage() {
           height: "auto",
           py: 4,
           background:
-            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+            "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(218,19,26,1) 100%)",
         }}
       >
         <Container maxWidth="lg">
@@ -590,10 +590,10 @@ export default function HomePage() {
                   variant="contained"
                   sx={{
                     borderRadius: "10px",
-                    background: "rgb(16, 110, 58)",
+                    background: "rgb(62, 116, 216)",
                     transition: "background 0.4s ease-in-out",
                     "&:hover": {
-                      background: "rgb(16, 148, 75)",
+                      background: "rgb(35, 88, 187)",
                     },
                   }}
                   onClick={handleSendMessageNews}

@@ -86,7 +86,7 @@ export default function TranslateVideo() {
       <AppBar
         sx={{
           background:
-            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+            "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(218,19,26,1) 100%)",
           paddingTop: "5px",
           paddingBottom: "5px",
           position: "static",
@@ -112,7 +112,7 @@ export default function TranslateVideo() {
 
           <Box>
             <Link
-              href="#"
+              href="/"
               style={{
                 textDecoration: "none",
                 color: "white",
@@ -298,7 +298,7 @@ export default function TranslateVideo() {
       <Box
         sx={{
           background:
-            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+            "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(218,19,26,1) 100%)",
           paddingTop: "40px",
           paddingBottom: "450px",
         }}
@@ -324,7 +324,7 @@ export default function TranslateVideo() {
           py: 4,
           pb: 12.9,
           background:
-            "linear-gradient(90deg, #131313, #151c18, #17241c, #172d21, #173726, #16402a, #134a2f, #0e5434)",
+            "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(218,19,26,1) 100%)",
         }}
       >
         <Container maxWidth="lg">
@@ -378,10 +378,10 @@ export default function TranslateVideo() {
                   variant="contained"
                   sx={{
                     borderRadius: "10px",
-                    background: "rgb(16, 110, 58)",
+                    background: "rgb(62, 116, 216)",
                     transition: "background 0.4s ease-in-out",
                     "&:hover": {
-                      background: "rgb(16, 148, 75)",
+                      background: "rgb(35, 88, 187)",
                     },
                   }}
                   onClick={handleSendMessageNews}
